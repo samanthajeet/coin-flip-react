@@ -24,10 +24,17 @@ const Options = styled.div`
 
 const SingleOption = styled.div`
   margin: 0.5rem;
+  padding: 0.25rem;
   border: 1px solid #FF7200;
   width: 5rem;
   height: 5rem;
-  animation: createBox .25s;
+  animation: createBox .5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  p {
+      margin: 0;
+  }
 
 
   @keyframes createBox {
