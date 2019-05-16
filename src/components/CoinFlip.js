@@ -2,10 +2,15 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const Dashboard = styled.div`
-margin-top: 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'Questrial', sans-serif;
+  h1{
+      color: #FF7200;
+      font-size: 5rem;
+      margin: 0;
+  }
 `;
 
 const Options = styled.div`
@@ -15,34 +20,69 @@ const Options = styled.div`
   justify-content: center;
   align-items: center;
   margin: 1rem;
-  border: 1px solid red;
 `;
 
 const SingleOption = styled.div`
   margin: 0.5rem;
-  border: 1px solid black;
+  border: 1px solid #FF7200;
   width: 5rem;
+  height: 5rem;
+  animation: createBox .25s;
+
+
+  @keyframes createBox {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
 `;
 
 const Inputs = styled.div`
-border: 1px solid green;
-width: 20rem;
-button {
+  width: 20rem;
+  button {
     background: none;
     border: 1px solid black;
     margin: 0.5rem;
-    padding: 0.25rem;
-}
+    height: 2rem;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 
-`
+  button:hover {
+      border: 1px solid #FF7200;
+      color: #FF7200
+  }
+
+  button:active{
+      border: none;
+      background: black ;
+      color: #E6E6E6;
+  }
+
+  button:focus {
+      outline: none;
+  }
+
+  input{
+      background: none;
+      outline: none;
+      border: 1px solid black;
+      padding: 0;
+      padding-left: 0.25rem;
+      font-family: 'Questrial', sans-serif;
+      height: 2rem;
+      font-size: 1rem;
+      color:#FF7200
+  }
+`;
 
 class CoinFlip extends Component {
   state = {
-    options: [
-      { name: "vue", chosen: 0 },
-      { name: "react", chosen: 0 },
-      { name: "angular", chosen: 0 }
-    ],
+    options: [],
     userInput: "",
     generatedChoice: "",
     coinFlip: 1
@@ -80,13 +120,13 @@ class CoinFlip extends Component {
     }
   }
 
-  rest(){
-      this.setState({
-          options: [],
-          userInput: "",
-          generatedChoice: "",
-          coinFlip: 1
-      })
+  rest() {
+    this.setState({
+      options: [],
+      userInput: "",
+      generatedChoice: "",
+      coinFlip: 1
+    });
   }
 
   render() {
@@ -104,26 +144,26 @@ class CoinFlip extends Component {
         <h1>coin flip</h1>
         <Options>{mappedOptions}</Options>
         <Inputs>
-            <div className="options">
+          <div className="options">
             <input
-                value={this.state.userInput}
-                onChange={e => this.handleChange("userInput", e.target.value)}
+              value={this.state.userInput}
+              onChange={e => this.handleChange("userInput", e.target.value)}
             />
             <button onClick={() => this.handleAddOption()}> add option</button>
-            </div>
-            <p>
+          </div>
+          <p>
             flip coin{" "}
             <input
-                type="number"
-                value={this.state.coinFlip}
-                onChange={e => this.handleChange("coinFlip", e.target.value)}
-                style={{ width: "2.5rem" }}
+              type="number"
+              value={this.state.coinFlip}
+              onChange={e => this.handleChange("coinFlip", e.target.value)}
+              style={{ width: "2.5rem" }}
             />{" "}
             {this.state.coinFlip > 1 ? "times" : "time"}
-            </p>
-            <button onClick={() => this.choose()}>flip that coin!</button>
-            <button onClick={() => this.rest()}> reset</button>
-            {/* <h1>{this.state.generatedChoice}</h1> */}
+          </p>
+          <button onClick={() => this.choose()}>flip that coin!</button>
+          <button onClick={() => this.rest()}> reset</button>
+          {/* <h1>{this.state.generatedChoice}</h1> */}
         </Inputs>
       </Dashboard>
     );
